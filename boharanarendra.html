@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Room Rent Management System</title>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
+<style>
+
+*
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:#f4f7fc;
+color:#333;
+}
+
+/* HEADER */
+
+header{
+background:#fff;
+padding:20px 8%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+box-shadow:0 2px 10px rgba(0,0,0,.1);
+position:sticky;
+top:0;
+z-index:100;
+}
+
+.logo{
+font-size:30px;
+font-weight:bold;
+color:#2563eb;
+}
+
+nav a{
+text-decoration:none;
+margin:0 15px;
+color:#333;
+font-weight:500;
+}
+
+nav a:hover{
+color:#2563eb;
+}
+
+.register-btn{
+padding:10px 20px;
+background:#2563eb;
+color:#fff;
+border:none;
+border-radius:6px;
+cursor:pointer;
+}
+
+/* HERO */
+
+.hero{
+height:80vh;
+background:
+linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
+url('https://images.unsplash.com/photo-1505693416388-ac5ce068fe85');
+background-size:cover;
+background-position:center;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+.search-box{
+background:white;
+padding:30px;
+border-radius:15px;
+width:100%;
+max-width:1100px;
+box-shadow:0 10px 30px rgba(0,0,0,.2);
+}
+
+.search-box h1{
+text-align:center;
+margin-bottom:10px;
+color:#2563eb;
+}
+
+.search-box p{
+text-align:center;
+margin-bottom:25px;
+}
+
+.search-form{
+display:grid;
+grid-template-columns:2fr 1fr 1fr 1fr;
+gap:10px;
+}
+
+.search-form input,
+.search-form select{
+padding:15px;
+border:1px solid #ddd;
+border-radius:5px;
+}
+
+.search-form button{
+background:#2563eb;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
+font-weight:bold;
+}
+
+/* MAIN CONTENT */
+
+.container{
+display:flex;
+gap:30px;
+padding:60px 8%;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+width:280px;
+background:white;
+padding:25px;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+height:fit-content;
+}
+
+.sidebar h2{
+margin-bottom:20px;
+color:#2563eb;
+}
+
+.sidebar label{
+display:block;
+margin-top:20px;
+font-weight:bold;
+}
+
+.sidebar div{
+margin-top:10px;
+}
+
+/* LISTINGS */
+
+.listings{
+flex:1;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(330px,1fr));
+gap:25px;
+}
+
+.card{
+background:white;
+border-radius:15px;
+overflow:hidden;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+}
+
+.card img{
+width:100%;
+height:240px;
+object-fit:cover;
+}
+
+.card-body{
+padding:20px;
+}
+
+.card-body h3{
+margin-bottom:10px;
+}
+
+.location{
+color:#777;
+margin-bottom:10px;
+}
+
+.price{
+font-size:24px;
+font-weight:bold;
+color:#2563eb;
+margin-bottom:15px;
+}
+
+.features{
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+margin-bottom:20px;
+}
+
+.features span{
+background:#eef4ff;
+padding:8px 12px;
+border-radius:20px;
+font-size:14px;
+}
+
+.card button{
+width:100%;
+padding:12px;
+background:#2563eb;
+color:white;
+border:none;
+border-radius:6px;
+cursor:pointer;
+}
+
+/* FEATURES */
+
+.features-section{
+padding:80px 8%;
+background:white;
+}
+
+.section-title{
+text-align:center;
+font-size:38px;
+margin-bottom:40px;
+color:#2563eb;
+}
+
+.feature-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.feature-card{
+background:#f8faff;
+padding:30px;
+border-radius:15px;
+text-align:center;
+}
+
+.feature-card i{
+font-size:40px;
+color:#2563eb;
+margin-bottom:15px;
+}
+
+/* STATS */
+
+.stats{
+padding:80px 8%;
+background:linear-gradient(90deg,#2563eb,#1d4ed8);
+color:white;
+}
+
+.stats-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:25px;
+}
+
+.stat{
+background:rgba(255,255,255,.1);
+padding:30px;
+border-radius:15px;
+text-align:center;
+}
+
+.stat h2{
+font-size:40px;
+margin-bottom:10px;
+}
+
+/* FOOTER */
+
+footer{
+background:#0f172a;
+color:white;
+padding:40px;
+text-align:center;
+}
+
+footer h3{
+color:#ffd700;
+margin-bottom:10px;
+}
+
+footer p{
+margin:8px 0;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+.container{
+flex-direction:column;
+}
+
+.sidebar{
+width:100%;
+}
+
+.search-form{
+grid-template-columns:1fr;
+}
+
+nav{
+display:none;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">RoomRent Nepal</div>
+
+<nav>
+<a href="#">Home</a>
+<a href="#">Rooms</a>
+<a href="#">Tenants</a>
+<a href="#">Payments</a>
+<a href="#">Reports</a>
+<a href="#">Contact</a>
+<button class="register-btn" onclick="window.location.href='register.html'">Register</button>
+</nav>
+
+</header>
+
+<section class="hero">
+
+<div class="search-box">
+
+<h1>Find Your Perfect Room</h1>
+
+<p>Rooms, Flats, Apartments and Hostels Across Nepal</p>
+
+<div class="search-form">
+
+<input type="text" placeholder="Enter Location">
+
+<select>
+<option>Room Type</option>
+<option>Single Room</option>
+<option>Double Room</option>
+<option>Flat</option>
+<option>Apartment</option>
+</select>
+
+<select>
+<option>Budget</option>
+<option>Rs.5000</option>
+<option>Rs.10000</option>
+<option>Rs.15000</option>
+<option>Rs.20000</option>
+</select>
+
+<button>Search</button>
+
+</div>
+
+</div>
+
+</section>
+
+<div class="container">
+
+<aside class="sidebar">
+
+<h2>Filters</h2>
+
+<label>Price Range</label>
+<input type="range">
+
+<label>Room Type</label>
+
+<div><input type="checkbox"> Single Room</div>
+<div><input type="checkbox"> Double Room</div>
+<div><input type="checkbox"> Flat</div>
+<div><input type="checkbox"> Apartment</div>
+
+<label>Facilities</label>
+
+<div><input type="checkbox"> WiFi</div>
+<div><input type="checkbox"> Parking</div>
+<div><input type="checkbox"> Attached Bathroom</div>
+<div><input type="checkbox"> Kitchen</div>
+
+</aside>
+
+<section class="listings">
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85">
+
+<div class="card-body">
+
+<h3>Luxury Single Room</h3>
+<p class="location">📍 Kathmandu</p>
+<div class="price">Rs. 8,000 / Month</div>
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3533.9253821730026!2d85.33712207516943!3d27.65778022767643!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb175f52ad107d%3A0x9d8955e99478b1d1!2z4KSH4KSu4KS-4KSh4KWL4KSyIOCkuOCljeCkteCkv-CkruCkv-CkguCklyDgpKrgpYLgpLI!5e0!3m2!1sne!2snp!4v1782221334344!5m2!1sne!2snp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+<div class="features">
+<span>WiFi</span>
+<span>Parking</span>
+<span>Bathroom</span>
+</div>
+
+<button>View Details</button>
+
+</div>
+</div>
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2">
+
+<div class="card-body">
+
+<h3>Double Room</h3>
+<p class="location">📍 Lalitpur</p>
+<div class="price">Rs. 12,000 / Month</div>
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.593534282211!2d85.337974!3d27.698955!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb199940d81663%3A0xaf36b9b58903050f!2sApex%20College%20by%20ING!5e0!3m2!1sen!2snp!4v1782261961739!5m2!1sen!2snp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+<div class="features">
+<span>Kitchen</span>
+<span>WiFi</span>
+<span>Parking</span>
+</div>
+
+<button>View Details</button>
+
+</div>
+</div>
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688">
+
+<div class="card-body">
+
+<h3>Apartment</h3>
+<p class="location">📍 Pokhara</p>
+<div class="price">Rs. 18,000 / Month</div>
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14134.802341126879!2d85.37432675!3d27.664733899999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb1a0b1558e827%3A0xb83237a2aa689ba7!2sBalkot!5e0!3m2!1sen!2snp!4v1784126672928!5m2!1sen!2snp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+<div class="features">
+<span>Balcony</span>
+<span>WiFi</span>
+<span>Kitchen</span>
+</div>
+
+<button>View Details</button>
+
+</div>
+</div>
+
+</section>
+
+</div>
+
+<section class="features-section">
+
+<h2 class="section-title">System Features</h2>
+
+<div class="feature-grid">
+
+<div class="feature-card">
+<i class="fas fa-users"></i>
+<h3>Tenant Management</h3>
+<p>Manage all tenant records digitally.</p>
+</div>
+
+<div class="feature-card">
+<i class="fas fa-bed"></i>
+<h3>Room Management</h3>
+<p>Add and manage available rooms.</p>
+</div>
+
+<div class="feature-card">
+<i class="fas fa-money-bill"></i>
+<h3>Rent Tracking</h3>
+<p>Track monthly rent payments.</p>
+</div>
+
+<div class="feature-card">
+<i class="fas fa-chart-bar"></i>
+<h3>Reports</h3>
+<p>Generate occupancy and payment reports.</p>
+</div>
+
+</div>
+
+</section>
+
+<section class="stats">
+
+<div class="stats-grid">
+
+<div class="stat">
+<h2>120</h2>
+<p>Total Rooms</p>
+</div>
+
+<div class="stat">
+<h2>95</h2>
+<p>Occupied Rooms</p>
+</div>
+
+<div class="stat">
+<h2>25</h2>
+<p>Available Rooms</p>
+</div>
+
+<div class="stat">
+<h2>350+</h2>
+<p>Happy Tenants</p>
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+<h3>Room Rent Management System</h3>
+
+<p>Tenant Management | Room Allocation | Rent Collection | Reports</p>
+
+
+
+</footer>
+
+<script>
+document.querySelectorAll(".card button").forEach(btn=>{
+btn.addEventListener("click",()=>{
+alert("Room Details Page Coming Soon!");
+});
+});
+</script>
+<!-- Registration Section -->
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
